@@ -1,6 +1,8 @@
 package com.example.au22_flashcard
 
 class WordList() {
+
+
     private val wordList = mutableListOf<Word>()
     private val usedWords = mutableListOf<Word>()
 
@@ -10,12 +12,12 @@ class WordList() {
 
 
     fun initializeWords() {
-        val word = Word("Hello", "Hej")
+        val word = Word(0,"Hello", "Hej")
         wordList.add(word)
-        wordList.add(Word("Good bye", "Hej då"))
-        wordList.add(Word("Thank you", "Tack"))
-        wordList.add(Word("Welcome", "Välkommen"))
-        wordList.add(Word("Computer", "Dator"))
+        wordList.add(Word(1,"Good bye", "Hej då"))
+        wordList.add(Word(2,"Thank you", "Tack"))
+        wordList.add(Word(3,"Welcome", "Välkommen"))
+        wordList.add(Word(4,"Computer", "Dator"))
 
     }
 
@@ -25,35 +27,35 @@ class WordList() {
 //    }
 
 
-    // alternativ 3
-//    fun getNewWord() : Word {
-//        if(wordList.isEmpty() ) {
-//            initializeWords()
-//        }
-//
-//        val rnd = (0 until wordList.size).random()
-//        val word = wordList.removeAt(rnd)
-//
-//        return word
-//    }
-
-    //alternativ 1
+  // alternativ 3
     fun getNewWord() : Word {
-        if (wordList.size == usedWords.size) {
-            usedWords.clear()
+        if(wordList.isEmpty() ) {
+            initializeWords()
         }
 
-        var word : Word? = null
-
-        do {
-            val rnd = (0 until wordList.size).random()
-            word = wordList[rnd]
-        } while(usedWords.contains(word))
-
-        usedWords.add(word!!)
+        val rnd = (0 until wordList.size).random()
+        val word = wordList.removeAt(rnd)
 
         return word
     }
+
+    //alternativ 1
+     //fun getNewWord() : Word {
+     //    if (wordList.size == usedWords.size) {
+     //        usedWords.clear()
+     //    }
+    //
+    //    var word : Word? = null
+    //
+    //    do {
+    //        val rnd = (0 until wordList.size).random()
+    //        word = wordList[rnd]
+    //    } while(usedWords.contains(word))
+    //
+    //      usedWords.add(word!!)
+    //
+    //      return word
+    //  }
 
     // 1. en till lista med redan använda ord
     // 2. lista med index på använda ord
