@@ -1,20 +1,17 @@
 package com.example.au22_flashcard
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WordDao {
 
-    @Insert
-    fun insert(word: Word)
+    @Insert(onConflict = OnConflictStrategy.IGNORE) // handerar vid dubbletter
+   suspend fun insert(word: Word) //suspens- to handle long running tasks without blocking the main thread
 
 
     @Delete
-    fun deleteWord(word: Word)
+    suspend fun deleteWord(word: Word)
 
     @Update //
     fun updateWord(word: Word)
@@ -23,6 +20,7 @@ interface WordDao {
 
     @Query("SELECT * FROM word_table")
    fun getAllWords(): List<Word>
+
 
 
 
